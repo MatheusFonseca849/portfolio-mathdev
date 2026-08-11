@@ -30,23 +30,15 @@ export default function HomePage() {
 
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
         <Typography variant="body1" color="text.primary">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          Graduated in 2026 in Systems Analysis and Development, Matheus has displayed great aptitude in the world of technology through his graduation journey. He was selected to be a monitor for two different disciplines on his first semester, was able to secure an internship at a systems development company in his second, was effectively hired on the third semester, and, at last, secured an international job as a client support analyst in the fourth, demonstrating his ability to adapt and thrive in challenging environments.
         </Typography>
 
         <Typography variant="body1" color="text.primary">
-          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-          nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-          deserunt mollit anim id est laborum. reprehenderit in voluptate velit esse cillum dolore eu fugiat
-          nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-          deserunt mollit anim id est laborum.
+          Through his experiences, Matheus has developed a strong foundation in software development, problem-solving, and client communication, which he hopes to leverage in his career as a software developer. Being a declared enemy of bugs, low performance systems, and poorly designed architectures, Matheus is ready to keep on studying and working relentlessly to deliver high quality code output and contribute to a bug-free world.
         </Typography>
 
         <Typography variant="body1" color="text.primary">
-          Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et
-          commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris.
-          Integer in mauris eu nibh euismod gravida.
+          However, not everything is about ones and zeros. Matheus is also an avid rock and heavy metal fan, loves video games, pop culture, Brazilian music and cinema, and has a deep passion for learning new things and exploring different ideas.
         </Typography>
       </Box>
     </Container>

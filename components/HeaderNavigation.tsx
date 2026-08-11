@@ -2,19 +2,13 @@
 
 import { Tabs, Tab, Box } from '@mui/material';
 import { usePathname, useRouter } from 'next/navigation';
-
-const tabs = [
-  { label: 'Landing Page', path: '/' },
-  { label: 'Projects', path: '/projects' },
-  { label: 'CV', path: '/cv' },
-  { label: 'Contact Me', path: '/contact' },
-];
+import { navItems } from '@/config/navigation';
 
 export default function HeaderNavigation() {
   const pathname = usePathname();
   const router = useRouter();
 
-  const currentTab = tabs.findIndex((tab) => tab.path === pathname);
+  const currentTab = navItems.findIndex((item) => item.path === pathname);
   const value = currentTab === -1 ? 0 : currentTab;
 
   return (
@@ -32,13 +26,13 @@ export default function HeaderNavigation() {
     >
       <Tabs
         value={value}
-        onChange={(_, newValue) => router.push(tabs[newValue].path)}
+        onChange={(_, newValue) => router.push(navItems[newValue].path)}
         textColor="primary"
         indicatorColor="primary"
         centered
       >
-        {tabs.map((tab) => (
-          <Tab key={tab.path} label={tab.label} />
+        {navItems.map((item) => (
+          <Tab key={item.path} label={item.label} />
         ))}
       </Tabs>
     </Box>

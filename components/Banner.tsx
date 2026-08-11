@@ -8,7 +8,7 @@ interface BannerProps {
 }
 
 const gradients = {
-  light: 'linear-gradient(to left bottom, #30a554, #53bb7d, #77d2a4, #9ee7c8, #c8fcea)',
+  light: 'linear-gradient(to right top, #c8fcea, #b3f7d6, #a4f1be, #9be9a3, #98e184)',
   dark: 'linear-gradient(to right top, #005800, #00582e, #005749, #00535a, #004e5e)',
 };
 

@@ -1,11 +1,11 @@
 import { Box, Typography, Container } from '@mui/material';
 
-export default function CVPage() {
+export default function ResumePage() {
   return (
     <Container maxWidth="md" sx={{ py: 6 }}>
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3, alignItems: 'center' }}>
         <Typography variant="h5" color="text.primary">
-          Curriculum Vitae
+          My Resume
         </Typography>
         <Typography variant="body1" color="text.secondary" sx={{ textAlign: 'center' }}>
           Coming soon...
