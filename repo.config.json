@@ -1,0 +1,13 @@
+{
+  "published": true,
+  "title": "My Portfolio",
+  "info": "This very portfolio website. A slick, modern website built with NextJS and powered by a custom GitHub integration library.",
+  "thumbnail": "assets/thumbnail.png",
+  "branch": "main",
+  "customConfig": {
+    "tags": ["react", "typescript", "portfolio", "nextjs"],
+    "featured": true,
+    "difficulty": "easy",
+    "infoPT": "Este é o meu portfólio pessoal. Um site moderno e elegante construído com NextJS e alimentado por uma biblioteca de integração personalizada com o GitHub."
+  }
+}
