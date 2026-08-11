@@ -3,7 +3,7 @@
   "title": "My Portfolio",
   "info": "This very portfolio website. A slick, modern website built with NextJS and powered by a custom GitHub integration library.",
   "thumbnail": "assets/thumbnail.PNG",
-  "publicUrl": "https://mathdev.vercel.app",
+  "publicUrl": "mathdev-ecru.vercel.app",
   "branch": "main",
   "customConfig": {
     "tags": ["react", "typescript", "portfolio", "nextjs"],
