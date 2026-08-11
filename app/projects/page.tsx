@@ -9,7 +9,7 @@ const GITHUB_USERNAME = 'MatheusFonseca849';
 
 export default function ProjectsPage() {
   const [repos, setRepos] = useState<
-    { name: string; url: string; publicUrl?: string; thumbnail?: string; info: string; title: string; customConfig?: Record<string, unknown> }[]
+    { name: string; url: string; publicUrl?: string; thumbnail?: string | null; info: string; title: string; customConfig?: Record<string, unknown> }[]
   >([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
