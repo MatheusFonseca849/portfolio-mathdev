@@ -9,7 +9,7 @@ export const getTheme = (mode: 'light' | 'dark') =>
       },
       background: {
         default: mode === 'dark' ? '#2a272a' : '#f6edd9',
-        paper: mode === 'dark' ? '#353035' : '#ffffff',
+        paper: mode === 'dark' ? '#353035' : '#faf7ff',
       },
       text: {
         primary: mode === 'dark' ? '#F0F0F0' : '#2a272a',

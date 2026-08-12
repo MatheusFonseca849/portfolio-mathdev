@@ -25,12 +25,15 @@ export default function HomePage() {
           order: { xs: -1, md: 1 },
         }}
       >
-      <Image src={profilePhoto} alt="Profile" fill style={{ objectFit: 'cover', borderRadius: '50%' }} />
+      <Image src={profilePhoto} alt="Profile" fill style={{ objectFit: 'cover', objectPosition: 'center top', borderRadius: '50%' }} />
       </Box>
 
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+        <Typography variant="h4" color="text.primary">
+          Matheus Fonseca
+        </Typography>
         <Typography variant="body1" color="text.primary">
-          Graduated in 2026 in Systems Analysis and Development, Matheus has displayed great aptitude in the world of technology through his graduation journey. He was selected to be a monitor for two different disciplines on his first semester, was able to secure an internship at a systems development company in his second, was effectively hired on the third semester, and, at last, secured an international job as a client support analyst in the fourth, demonstrating his ability to adapt and thrive in challenging environments.
+          Graduated in 2026 in Systems Analysis and Development, Matheus has displayed great aptitude in the world of technology throughout his graduation journey. He was selected to be a monitor for two different disciplines on his first semester, was able to secure an internship at a systems development company in his second, was effectively hired on the third semester, and, at last, secured an international job as a client support analyst in the fourth, demonstrating his ability to adapt and thrive in challenging environments.
         </Typography>
 
         <Typography variant="body1" color="text.primary">
