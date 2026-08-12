@@ -144,7 +144,7 @@ function SectionTitle({
   children: React.ReactNode;
 }) {
   return (
-    <Stack direction="row" spacing={1.5} alignItems="center" sx={{ mb: 3 }}>
+    <Stack direction="row" spacing={1.5} sx={{ alignItems: 'center', mb: 3 }}>
       <Box
         sx={{
           display: 'flex',
@@ -417,7 +417,7 @@ export default function ResumePage() {
                 {group.title}
               </Typography>
 
-              <Stack direction="row" flexWrap="wrap" gap={0.8}>
+              <Stack direction="row" sx={{ flexWrap: 'wrap', gap: 0.8 }}>
                 {group.skills.map((skill) => (
                   <Chip
                     key={skill}
@@ -470,7 +470,7 @@ export default function ResumePage() {
           Soft Skills
         </SectionTitle>
 
-        <Stack direction="row" flexWrap="wrap" gap={1}>
+        <Stack direction="row" sx={{ flexWrap: 'wrap', gap: 1 }}>
           {softSkills.map((skill) => (
             <Chip
               key={skill}
