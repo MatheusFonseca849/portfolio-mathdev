@@ -1,7 +1,4 @@
-'use client';
-
-import { useState, useEffect } from 'react';
-import { Box, Container, Typography, CircularProgress } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 import { getRepos } from 'portfolio-github-integration';
 import ProjectCard from '@/components/ProjectCard';
 
