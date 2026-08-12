@@ -7,37 +7,21 @@ import ProjectCard from '@/components/ProjectCard';
 
 const GITHUB_USERNAME = 'MatheusFonseca849';
 
-export default function ProjectsPage() {
-  const [repos, setRepos] = useState<
-    { name: string; url: string; publicUrl?: string; thumbnail?: string | null; info: string; title: string; customConfig?: Record<string, unknown> }[]
-  >([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+export const revalidate = 3600; // Re-fetch from GitHub every 1 hour
 
-  useEffect(() => {
-    async function fetchRepos() {
-      try {
-        const data = await getRepos(GITHUB_USERNAME, {
-          maxRepos: 50,
-          debug: false,
-        });
-        setRepos(data);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to fetch projects');
-      } finally {
-        setLoading(false);
-      }
-    }
+export default async function ProjectsPage() {
+  let repos: { name: string; url: string; publicUrl?: string; thumbnail?: string | null; info: string; title: string; customConfig?: Record<string, unknown> }[] = [];
+  let error: string | null = null;
 
-    fetchRepos();
-  }, []);
-
-  if (loading) {
-    return (
-      <Container maxWidth="lg" sx={{ py: 6, display: 'flex', justifyContent: 'center' }}>
-        <CircularProgress color="primary" />
-      </Container>
-    );
+  try {
+    repos = await getRepos(GITHUB_USERNAME, {
+      token: process.env.GITHUB_TOKEN,
+      maxRepos: 50,
+      debug: false,
+    });
+  } catch (err) {
+    error = err instanceof Error ? err.message : 'Failed to fetch projects';
+    repos = [];
   }
 
   if (error) {
