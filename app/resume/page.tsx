@@ -98,7 +98,19 @@ const skillGroups: SkillGroup[] = [
   },
   {
     title: 'Libraries',
-    skills: ['Styled Components', 'Tailwind', 'Sass', 'Mongoose'],
+    skills: [
+      'Tailwind',
+      'Sass',
+      'Mongoose',
+      'Prisma',
+      'Axios',
+      'Zod',
+      'Yup',
+      'Pandas',
+      'Scikit-learn',
+      'NumPy',
+      'Matplotlib',
+    ],
   },
   {
     title: 'Databases',
@@ -122,6 +134,7 @@ const skillGroups: SkillGroup[] = [
 ];
 
 const languages = [
+  { language: 'Portuguese', level: 'Native' },
   { language: 'English', level: 'Fluent' },
   { language: 'Spanish', level: 'Intermediate' },
   { language: 'French', level: 'Basic' },

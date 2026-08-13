@@ -15,6 +15,7 @@ export default async function ProjectsPage() {
       token: process.env.GITHUB_TOKEN,
       maxRepos: 50,
       debug: false,
+      sortBy: "order"
     });
   } catch (err) {
     error = err instanceof Error ? err.message : 'Failed to fetch projects';
