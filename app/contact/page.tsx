@@ -132,7 +132,7 @@ export default function ContactPage() {
             fullWidth
             value={form.name}
             onChange={handleChange('name')}
-            inputProps={{ maxLength: MAX_NAME }}
+            slotProps={{ htmlInput: { maxLength: MAX_NAME } }}
             disabled={status === 'sending'}
           />
 
@@ -143,7 +143,7 @@ export default function ContactPage() {
             fullWidth
             value={form.email}
             onChange={handleChange('email')}
-            inputProps={{ maxLength: MAX_EMAIL }}
+            slotProps={{ htmlInput: { maxLength: MAX_EMAIL } }}
             disabled={status === 'sending'}
           />
 
@@ -156,7 +156,7 @@ export default function ContactPage() {
             maxRows={10}
             value={form.message}
             onChange={handleChange('message')}
-            inputProps={{ maxLength: MAX_MESSAGE }}
+            slotProps={{ htmlInput: { maxLength: MAX_MESSAGE } }}
             helperText={`${form.message.length}/${MAX_MESSAGE}`}
             disabled={status === 'sending'}
           />
