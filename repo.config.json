@@ -3,6 +3,7 @@
   "title": "My Portfolio",
   "info": "This very portfolio. A slick, modern website built with NextJS + MUI and powered by a custom GitHub integration library.",
   "thumbnail": "assets/thumbnail.PNG",
+  "order": 2,
   "publicUrl": "https://mathdev-ecru.vercel.app/",
   "branch": "main",
   "customConfig": {

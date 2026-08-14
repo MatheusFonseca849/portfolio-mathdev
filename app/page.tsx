@@ -25,7 +25,7 @@ export default function HomePage() {
           order: { xs: -1, md: 1 },
         }}
       >
-      <Image src={profilePhoto} alt="Profile" fill style={{ objectFit: 'cover', objectPosition: 'center top', borderRadius: '50%' }} />
+      <Image src={profilePhoto} alt="Profile" priority fill style={{ objectFit: 'cover', objectPosition: 'center top', borderRadius: '50%' }} />
       </Box>
 
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>

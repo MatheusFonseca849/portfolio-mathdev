@@ -7,7 +7,7 @@ const GITHUB_USERNAME = 'MatheusFonseca849';
 export const revalidate = 3600; // Re-fetch from GitHub every 1 hour
 
 export default async function ProjectsPage() {
-  let repos;
+  let repos: { name: string; url: string; publicUrl?: string; thumbnail?: string | null; info: string; title: string; customConfig?: Record<string, unknown> }[] = [];
   let error: string | null = null;
 
   try {
@@ -15,6 +15,7 @@ export default async function ProjectsPage() {
       token: process.env.GITHUB_TOKEN,
       maxRepos: 50,
       debug: false,
+      sortBy: "order"
     });
   } catch (err) {
     error = err instanceof Error ? err.message : 'Failed to fetch projects';

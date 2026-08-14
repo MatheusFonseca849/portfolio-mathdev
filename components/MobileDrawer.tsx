@@ -12,13 +12,7 @@ import {
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { usePathname, useRouter } from 'next/navigation';
-
-const navItems = [
-  { label: 'Landing Page', path: '/' },
-  { label: 'Projects', path: '/projects' },
-  { label: 'CV', path: '/cv' },
-  { label: 'Contact Me', path: '/contact' },
-];
+import { navItems } from '@/config/navigation';
 
 export default function MobileDrawer() {
   const [open, setOpen] = useState(false);
