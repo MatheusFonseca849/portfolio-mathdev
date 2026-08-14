@@ -46,7 +46,7 @@ const experiences: Experience[] = [
     company: 'Outsmart',
     period: 'April 2025 – September 2025',
     description: [
-      'Designed and developed front-end interfaces using React, TypeScript, Next.js, Vue.js, and Angular.',
+      'Designed and developed modular front-end interfaces using React, TypeScript, Next.js, Vue.js, and Angular.',
       'Revamped layouts and implemented CSS styling to improve application interfaces.',
       'Integrated applications within the Zoho CRM environment using Deluge.',
       'Performed maintenance and improvements across front-end and back-end applications.',
@@ -84,6 +84,30 @@ const academicActivities: Experience[] = [
     ],
     achievements:
       'Contributed to coordinating the front-end development team and implemented solutions to improve code organization and scalability.',
+  },
+  {
+    position: 'Academic Monitor - Interface Design',
+    company: 'IESB, Brasília – DF',
+    period: 'March 2024 – July 2024',
+    description: [
+      'Contributed with the development of my fellow classmates in the subjects discussed during the course',
+      'Advised students on issues encountered during the classes exercises.',
+      'Coordinated with the professor to develop new exercises to better fixate the class\' understanding on fundamental design practices such as CSS variables, responsive pages with media queries, mobile-first design, fundamental accessibility, UI feedback, UI/UX design, etc.',
+    ],
+    achievements:
+      'Greatly contributed to the advancement of the class, according to the discipline\s teacher. Developed a 1h30min live-coding masterclass on interface design and best practices to show real-life application of concepts brought up during classes.',
+  },
+  {
+    position: 'Academic Monitor - Programming Logic',
+    company: 'IESB, Brasília – DF',
+    period: 'March 2024 – July 2024',
+    description: [
+      'Contributed with the development of my fellow classmates in the subjects discussed during the course',
+      'Advised students on issues encountered during the classes exercises.',
+      'Coordinated with the professor to develop new exercises to better fixate the class\' understanding on topics like data types, variables, arrays, objects, loops, functions, assynchronous functions, APIs, fetch, try-catch statements, etc.',
+    ],
+    achievements:
+      'Greatly contributed to the advancement of the class, according to the discipline\s teacher. Developed a 1h30min live-coding masterclass on programming logic, expanding on the interface design project and adding functionalities using vanilla JS.',
   },
 ];
 
@@ -308,7 +332,7 @@ export default function ResumePage() {
             mb: 1,
           }}
         >
-          My Resume
+          Matheus Fonseca
         </Typography>
 
         <Typography
