@@ -11,15 +11,18 @@ import {
   Box,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { usePathname, useRouter } from 'next/navigation';
-import { navItems } from '@/config/navigation';
+import { useTranslations } from 'next-intl';
+import { usePathname, useRouter } from '@/i18n/navigation';
+import { navItems, type NavItem } from '@/config/navigation';
 
 export default function MobileDrawer() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
+  const t = useTranslations('nav');
+  const tHeader = useTranslations('header');
 
-  const handleNav = (path: string) => {
+  const handleNav = (path: NavItem['path']) => {
     router.push(path);
     setOpen(false);
   };
@@ -28,7 +31,7 @@ export default function MobileDrawer() {
     <>
       <IconButton
         color="primary"
-        aria-label="Open navigation menu"
+        aria-label={tHeader('openMenu')}
         onClick={() => setOpen(true)}
         sx={{ display: { xs: 'inline-flex', md: 'none' } }}
       >
@@ -48,7 +51,7 @@ export default function MobileDrawer() {
                   selected={pathname === item.path}
                   onClick={() => handleNav(item.path)}
                 >
-                  <ListItemText primary={item.label} />
+                  <ListItemText primary={t(item.key)} />
                 </ListItemButton>
               </ListItem>
             ))}

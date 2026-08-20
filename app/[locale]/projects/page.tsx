@@ -1,4 +1,5 @@
 import { Box, Container, Typography } from '@mui/material';
+import { getTranslations } from 'next-intl/server';
 import { getRepos } from 'portfolio-github-integration';
 import ProjectCard from '@/components/ProjectCard';
 
@@ -7,8 +8,10 @@ const GITHUB_USERNAME = 'MatheusFonseca849';
 export const revalidate = 3600; // Re-fetch from GitHub every 1 hour
 
 export default async function ProjectsPage() {
+  const t = await getTranslations('projects');
+
   let repos: { name: string; url: string; publicUrl?: string; thumbnail?: string | null; info: string; title: string; customConfig?: Record<string, unknown> }[] = [];
-  let error: string | null = null;
+  let failed = false;
 
   try {
     repos = await getRepos(GITHUB_USERNAME, {
@@ -18,15 +21,16 @@ export default async function ProjectsPage() {
       sortBy: "order"
     });
   } catch (err) {
-    error = err instanceof Error ? err.message : 'Failed to fetch projects';
+    console.error('Failed to fetch GitHub repos:', err);
+    failed = true;
     repos = [];
   }
 
-  if (error) {
+  if (failed) {
     return (
       <Container maxWidth="lg" sx={{ py: 6 }}>
         <Typography color="error" sx={{ textAlign: 'center' }}>
-          {error}
+          {t('fetchError')}
         </Typography>
       </Container>
     );
