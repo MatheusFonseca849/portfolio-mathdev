@@ -1,7 +1,8 @@
 'use client';
 
 import { Box } from '@mui/material';
-import { usePathname } from 'next/navigation';
+import { useTranslations } from 'next-intl';
+import { usePathname } from '@/i18n/navigation';
 import TopHeader from '@/components/TopHeader';
 import Banner from '@/components/Banner';
 import HeaderNavigation from '@/components/HeaderNavigation';
@@ -9,7 +10,10 @@ import { navItems } from '@/config/navigation';
 
 export default function PageShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const title = navItems.find((item) => item.path === pathname)?.label || 'Portfolio';
+  const t = useTranslations('nav');
+
+  const activeItem = navItems.find((item) => item.path === pathname);
+  const title = activeItem ? t(activeItem.key) : t('fallback');
 
   return (
     <Box sx={{ minHeight: '100vh', bgcolor: 'background.default' }}>

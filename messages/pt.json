@@ -1,0 +1,60 @@
+{
+  "metadata": {
+    "title": "Portfólio - MathDev",
+    "description": "Portfólio pessoal"
+  },
+  "nav": {
+    "fallback": "Portfólio",
+    "about": "Sobre Mim",
+    "projects": "Projetos",
+    "resume": "Meu Currículo",
+    "contact": "Contato"
+  },
+  "header": {
+    "switchLanguage": "Alterar idioma",
+    "toggleDarkMode": "Alternar modo escuro",
+    "openMenu": "Abrir menu de navegação"
+  },
+  "home": {
+    "name": "Matheus Fonseca",
+    "bio1": "Formado em 2026 em Análise e Desenvolvimento de Sistemas, Matheus demonstrou grande aptidão no mundo da tecnologia ao longo de sua graduação. Foi selecionado para ser monitor de duas disciplinas diferentes em seu primeiro semestre, conseguiu estagiar em uma empresa de desenvolvimento de sistemas em seu segundo, foi efetivamente contratado no terceiro e, por fim, garantiu um emprego internacional como analista de suporte ao cliente no quarto, demonstrando sua capacidade de se adaptar e prosperar em ambientes desafiadores.",
+    "bio2": "Através de suas experiências, Matheus desenvolveu uma forte base em desenvolvimento de software, resolução de problemas e comunicação com clientes, qualidades que espera aproveitar e desenvolver em sua carreira como desenvolvedor de software. Inimigo declarado de bugs, sistemas de baixo desempenho e arquiteturas mal projetadas, Matheus está pronto para continuar estudando e trabalhando incansavelmente para entregar código de alta qualidade e contribuir para um mundo livre de bugs.",
+    "bio3": "Mas, nem tudo é sobre zeros e uns. Matheus também é um grande fã de rock e heavy metal, adora video games, cultura pop, música e cinema brasileiros, e tem uma paixão profunda por aprender coisas novas e explorar ideias diferentes."
+  },
+
+  "resume": {
+    "jobTitle": "Desenvolvedor Full Stack",
+    "intro": "Graduado em Análise e Desenvolvimento de Sistemas, com experiência prática em desenvolvimento full-stack, especializado em React, Next.js, Node.js e Python. Possuo conhecimentos em integração de sistemas, liderança de equipes e desenvolvimento de soluções web centradas no usuário. Utilizo minha sólida experiência na área de vendas para trazer uma perspectiva diferenciada na resolução de problemas e na colaboração com diferentes partes interessadas. Busco contribuir para projetos inovadores de tecnologia, gerando resultados por meio de uma postura proativa e do compromisso com a excelência."
+    
+  },
+
+  "projects": {
+    "fetchError": "Falha ao carregar os projetos"
+  },
+  "contact": {
+    "heading": "Entre em Contato",
+    "intro": "Tem alguma dúvida ou quer trabalhar comigo? Preencha o formulário abaixo e responderei o mais breve possível.",
+    "nameLabel": "Nome",
+    "emailLabel": "E-mail",
+    "messageLabel": "Mensagem",
+    "websiteLabel": "Site",
+    "send": "Enviar Mensagem",
+    "sending": "Enviando...",
+    "success": "Mensagem enviada com sucesso!",
+    "linkedinPrompt": "Ou conecte-se comigo no",
+    "linkedinLabel": "LinkedIn",
+    "errors": {
+      "REQUIRED_FIELDS": "Todos os campos são obrigatórios.",
+      "INVALID_EMAIL": "Por favor, informe um endereço de e-mail válido.",
+      "NAME_TOO_LONG": "O nome deve ter no máximo {max} caracteres.",
+      "MESSAGE_TOO_LONG": "A mensagem deve ter no máximo {max} caracteres.",
+      "RATE_LIMITED": "Muitas tentativas. Tente novamente em {seconds} segundos.",
+      "INVALID_BODY": "Requisição inválida. Tente novamente.",
+      "FORBIDDEN": "Esta requisição foi bloqueada. Utilize o formulário do site.",
+      "SERVER_CONFIG": "O formulário de contato está temporariamente indisponível.",
+      "SEND_FAILED": "Falha ao enviar a mensagem. Tente novamente mais tarde.",
+      "NETWORK": "Erro de rede. Verifique sua conexão e tente novamente.",
+      "UNKNOWN": "Algo deu errado. Tente novamente."
+    }
+  }
+}

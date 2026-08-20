@@ -1,12 +1,14 @@
 'use client';
 
 import { Tabs, Tab, Box } from '@mui/material';
-import { usePathname, useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
+import { usePathname, useRouter } from '@/i18n/navigation';
 import { navItems } from '@/config/navigation';
 
 export default function HeaderNavigation() {
   const pathname = usePathname();
   const router = useRouter();
+  const t = useTranslations('nav');
 
   const currentTab = navItems.findIndex((item) => item.path === pathname);
   const value = currentTab === -1 ? 0 : currentTab;
@@ -32,7 +34,7 @@ export default function HeaderNavigation() {
         centered
       >
         {navItems.map((item) => (
-          <Tab key={item.path} label={item.label} />
+          <Tab key={item.path} label={t(item.key)} />
         ))}
       </Tabs>
     </Box>

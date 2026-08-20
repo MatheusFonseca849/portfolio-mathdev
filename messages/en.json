@@ -1,0 +1,58 @@
+{
+  "metadata": {
+    "title": "Portfolio - MathDev",
+    "description": "Personal portfolio"
+  },
+  "nav": {
+    "fallback": "Portfolio",
+    "about": "About Me",
+    "projects": "Projects",
+    "resume": "My Resume",
+    "contact": "Contact Me"
+  },
+  "header": {
+    "switchLanguage": "Switch language",
+    "toggleDarkMode": "Toggle dark mode",
+    "openMenu": "Open navigation menu"
+  },
+  "home": {
+    "name": "Matheus Fonseca",
+    "bio1": "Graduated in 2026 in Systems Analysis and Development, Matheus has displayed great aptitude in the world of technology throughout his graduation journey. He was selected to be a monitor for two different disciplines on his first semester, was able to secure an internship at a systems development company in his second, was effectively hired on the third semester, and, at last, secured an international job as a client support analyst in the fourth, demonstrating his ability to adapt and thrive in challenging environments.",
+    "bio2": "Through his experiences, Matheus has developed a strong foundation in software development, problem-solving, and client communication, which he hopes to leverage in his career as a software developer. Being a declared enemy of bugs, low performance systems, and poorly designed architectures, Matheus is ready to keep on studying and working relentlessly to deliver high quality code output and contribute to a bug-free world.",
+    "bio3": "However, not everything is about ones and zeros. Matheus is also an avid rock and heavy metal fan, loves video games, pop culture, Brazilian music and cinema, and has a deep passion for learning new things and exploring different ideas."
+  },
+  "projects": {
+    "fetchError": "Failed to fetch projects"
+  },
+  "resume": {
+    "jobTitle": "Full Stack Software Developer",
+    "intro": "Systems Analysis and Development graduate with hands-on experience in full-stack development, specializing in React, Next.js, Node.js, and Python. Skilled in systems integration, team leadership, and the delivery of user-centric web solutions. Leveraging a strong foundation in sales to bring a unique perspective to problem-solving and stakeholder collaboration. Eager to contribute to innovative technology projects, driving results with a proactive mindset and commitment to excellence."
+    
+  },
+  "contact": {
+    "heading": "Get in Touch",
+    "intro": "Have a question or want to work together? Fill out the form below and I'll get back to you as soon as possible.",
+    "nameLabel": "Name",
+    "emailLabel": "Email",
+    "messageLabel": "Message",
+    "websiteLabel": "Website",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "success": "Message sent successfully!",
+    "linkedinPrompt": "Or connect with me on",
+    "linkedinLabel": "LinkedIn",
+    "errors": {
+      "REQUIRED_FIELDS": "All fields are required.",
+      "INVALID_EMAIL": "Please provide a valid email address.",
+      "NAME_TOO_LONG": "Name must be {max} characters or fewer.",
+      "MESSAGE_TOO_LONG": "Message must be {max} characters or fewer.",
+      "RATE_LIMITED": "Too many requests. Please try again in {seconds} seconds.",
+      "INVALID_BODY": "Invalid request. Please try again.",
+      "FORBIDDEN": "This request was blocked. Please use the form on the site.",
+      "SERVER_CONFIG": "The contact form is temporarily unavailable.",
+      "SEND_FAILED": "Failed to send message. Please try again later.",
+      "NETWORK": "Network error. Please check your connection and try again.",
+      "UNKNOWN": "Something went wrong. Please try again."
+    }
+  }
+}
