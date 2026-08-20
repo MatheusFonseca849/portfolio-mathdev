@@ -16,6 +16,30 @@ function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
+type ErrorCode =
+  | 'FORBIDDEN'
+  | 'RATE_LIMITED'
+  | 'INVALID_BODY'
+  | 'REQUIRED_FIELDS'
+  | 'NAME_TOO_LONG'
+  | 'INVALID_EMAIL'
+  | 'MESSAGE_TOO_LONG'
+  | 'SERVER_CONFIG'
+  | 'SEND_FAILED';
+
+/**
+ * Responds with a stable error code rather than a localized string, so the
+ * client can render it in the active locale.
+ */
+function fail(
+  code: ErrorCode,
+  status: number,
+  extra?: Record<string, number>,
+  headers?: Record<string, string>,
+) {
+  return NextResponse.json({ error: code, ...extra }, { status, headers });
+}
+
 export async function POST(request: NextRequest) {
   // --- Origin check ---
   const origin = request.headers.get('origin');
@@ -28,7 +52,7 @@ export async function POST(request: NextRequest) {
   const isAllowedOrigin = allowedHosts.some((host) => origin === host);
 
   if (!isLocalhost && !isAllowedOrigin) {
-    return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+    return fail('FORBIDDEN', 403);
   }
 
   // --- Rate limiting ---
@@ -37,9 +61,11 @@ export async function POST(request: NextRequest) {
   const { allowed, retryAfterSeconds } = rateLimit(ip);
 
   if (!allowed) {
-    return NextResponse.json(
-      { error: `Too many requests. Please try again in ${retryAfterSeconds} seconds.` },
-      { status: 429, headers: { 'Retry-After': String(retryAfterSeconds) } },
+    return fail(
+      'RATE_LIMITED',
+      429,
+      { seconds: retryAfterSeconds },
+      { 'Retry-After': String(retryAfterSeconds) },
     );
   }
 
@@ -48,12 +74,13 @@ export async function POST(request: NextRequest) {
   try {
     body = await request.json();
   } catch {
-    return NextResponse.json({ error: 'Invalid request body.' }, { status: 400 });
+    return fail('INVALID_BODY', 400);
   }
 
   // --- Honeypot ---
+  // Bots that fill the hidden field get a fake success so they cannot detect the trap.
   if (body.website) {
-    return NextResponse.json({ message: 'Message sent successfully.' }, { status: 200 });
+    return NextResponse.json({ ok: true }, { status: 200 });
   }
 
   const name = typeof body.name === 'string' ? sanitize(body.name) : '';
@@ -62,32 +89,26 @@ export async function POST(request: NextRequest) {
 
   // --- Validation ---
   if (!name || !email || !message) {
-    return NextResponse.json({ error: 'All fields are required.' }, { status: 400 });
+    return fail('REQUIRED_FIELDS', 400);
   }
 
   if (name.length > MAX_NAME_LENGTH) {
-    return NextResponse.json(
-      { error: `Name must be ${MAX_NAME_LENGTH} characters or fewer.` },
-      { status: 400 },
-    );
+    return fail('NAME_TOO_LONG', 400, { max: MAX_NAME_LENGTH });
   }
 
   if (email.length > MAX_EMAIL_LENGTH || !isValidEmail(email)) {
-    return NextResponse.json({ error: 'Please provide a valid email address.' }, { status: 400 });
+    return fail('INVALID_EMAIL', 400);
   }
 
   if (message.length > MAX_MESSAGE_LENGTH) {
-    return NextResponse.json(
-      { error: `Message must be ${MAX_MESSAGE_LENGTH} characters or fewer.` },
-      { status: 400 },
-    );
+    return fail('MESSAGE_TOO_LONG', 400, { max: MAX_MESSAGE_LENGTH });
   }
 
   // --- Environment check ---
   const contactEmail = process.env.CONTACT_EMAIL;
   if (!process.env.RESEND_API_KEY || !contactEmail) {
     console.error('Missing RESEND_API_KEY or CONTACT_EMAIL environment variable.');
-    return NextResponse.json({ error: 'Server configuration error.' }, { status: 500 });
+    return fail('SERVER_CONFIG', 500);
   }
 
   // --- Send email ---
@@ -106,9 +127,9 @@ export async function POST(request: NextRequest) {
       ].join('\n'),
     });
 
-    return NextResponse.json({ message: 'Message sent successfully.' }, { status: 200 });
+    return NextResponse.json({ ok: true }, { status: 200 });
   } catch (err) {
     console.error('Resend error:', err);
-    return NextResponse.json({ error: 'Failed to send message. Please try again later.' }, { status: 500 });
+    return fail('SEND_FAILED', 500);
   }
 }

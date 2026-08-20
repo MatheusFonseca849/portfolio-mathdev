@@ -1,22 +1,44 @@
 'use client';
 
 import { useState, type FormEvent } from 'react';
-import Link from 'next/link';
 import {
   Alert,
   Box,
   Button,
   CircularProgress,
   Container,
+  Link,
   Paper,
   TextField,
   Typography,
 } from '@mui/material';
 import SendIcon from '@mui/icons-material/SendOutlined';
+import { useTranslations } from 'next-intl';
 
 const MAX_NAME = 100;
 const MAX_EMAIL = 254;
 const MAX_MESSAGE = 2000;
+
+const LINKEDIN_URL = 'https://www.linkedin.com/in/matheusfonseca1993';
+
+/** Error codes the API is known to return; anything else falls back to UNKNOWN. */
+const KNOWN_ERROR_CODES = new Set([
+  'FORBIDDEN',
+  'RATE_LIMITED',
+  'INVALID_BODY',
+  'REQUIRED_FIELDS',
+  'NAME_TOO_LONG',
+  'INVALID_EMAIL',
+  'MESSAGE_TOO_LONG',
+  'SERVER_CONFIG',
+  'SEND_FAILED',
+]);
+
+interface ApiError {
+  error?: string;
+  seconds?: number;
+  max?: number;
+}
 
 interface FormState {
   name: string;
@@ -34,6 +56,18 @@ export default function ContactPage() {
   });
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [feedback, setFeedback] = useState('');
+  const t = useTranslations('contact');
+
+  const describeError = (data: ApiError) => {
+    const code = data?.error;
+    if (!code || !KNOWN_ERROR_CODES.has(code)) {
+      return t('errors.UNKNOWN');
+    }
+    return t(`errors.${code}`, {
+      seconds: data.seconds ?? 0,
+      max: data.max ?? 0,
+    });
+  };
 
   const isValid =
     form.name.trim().length > 0 &&
@@ -63,19 +97,19 @@ export default function ContactPage() {
         }),
       });
 
-      const data = await res.json();
+      const data: ApiError = await res.json();
 
       if (res.ok) {
         setStatus('success');
-        setFeedback(data.message || 'Message sent successfully!');
+        setFeedback(t('success'));
         setForm({ name: '', email: '', message: '', website: '' });
       } else {
         setStatus('error');
-        setFeedback(data.error || 'Something went wrong. Please try again.');
+        setFeedback(describeError(data));
       }
     } catch {
       setStatus('error');
-      setFeedback('Network error. Please check your connection and try again.');
+      setFeedback(t('errors.NETWORK'));
     }
   };
 
@@ -91,11 +125,10 @@ export default function ContactPage() {
             mb: 1,
           }}
         >
-          Get in Touch
+          {t('heading')}
         </Typography>
         <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.8 }}>
-          Have a question or want to work together? Fill out the form below and
-          I&apos;ll get back to you as soon as possible.
+          {t('intro')}
         </Typography>
       </Box>
 
@@ -111,7 +144,7 @@ export default function ContactPage() {
         >
           {/* Honeypot — invisible to real users */}
           <TextField
-            label="Website"
+            label={t('websiteLabel')}
             value={form.website}
             onChange={handleChange('website')}
             tabIndex={-1}
@@ -127,7 +160,7 @@ export default function ContactPage() {
           />
 
           <TextField
-            label="Name"
+            label={t('nameLabel')}
             required
             fullWidth
             value={form.name}
@@ -137,7 +170,7 @@ export default function ContactPage() {
           />
 
           <TextField
-            label="Email"
+            label={t('emailLabel')}
             type="email"
             required
             fullWidth
@@ -148,7 +181,7 @@ export default function ContactPage() {
           />
 
           <TextField
-            label="Message"
+            label={t('messageLabel')}
             required
             fullWidth
             multiline
@@ -181,12 +214,15 @@ export default function ContactPage() {
             }
             sx={{ alignSelf: 'flex-end', borderRadius: 2, px: 4 }}
           >
-            {status === 'sending' ? 'Sending...' : 'Send Message'}
+            {status === 'sending' ? t('sending') : t('send')}
           </Button>
         </Box>
       </Paper>
       <Typography variant="body2" sx={{ mt: 2 }}>
-        Or connect with me on <Link href="https://www.linkedin.com/in/matheusfonseca1993" target="_blank">Linkedin</Link>
+        {t('linkedinPrompt')}{' '}
+        <Link href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">
+          {t('linkedinLabel')}
+        </Link>
       </Typography>
     </Container>
   );

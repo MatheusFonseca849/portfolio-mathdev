@@ -1,11 +1,12 @@
 export interface NavItem {
-  label: string;
-  path: string;
+  /** Key into the `nav` namespace of the message catalogs. */
+  key: 'about' | 'projects' | 'resume' | 'contact';
+  path: '/' | '/projects' | '/resume' | '/contact';
 }
 
 export const navItems: NavItem[] = [
-  { label: 'About Me', path: '/' },
-  { label: 'Projects', path: '/projects' },
-  { label: 'My Resume', path: '/resume' },
-  { label: 'Contact Me', path: '/contact' },
+  { key: 'about', path: '/' },
+  { key: 'projects', path: '/projects' },
+  { key: 'resume', path: '/resume' },
+  { key: 'contact', path: '/contact' },
 ];
