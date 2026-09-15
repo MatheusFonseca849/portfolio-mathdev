@@ -1,31 +1,50 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
-import { rateLimit } from '@/lib/rate-limit';
+import {
+  checkSendQuota,
+  recordAttempt,
+  recordSend,
+  type RateLimitResult,
+} from '@/lib/rate-limit';
+import {
+  MAX_EMAIL_LENGTH,
+  MAX_MESSAGE_LENGTH,
+  MAX_NAME_LENGTH,
+  type ErrorCode,
+} from '@/lib/contact-constants';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const MAX_NAME_LENGTH = 100;
-const MAX_EMAIL_LENGTH = 254;
-const MAX_MESSAGE_LENGTH = 2000;
-
+/**
+ * Strips angle brackets and control characters, but keeps tabs and newlines so
+ * the message body retains its paragraphs. Carriage returns are dropped: a CR
+ * surviving into a header is the classic email header injection vector.
+ */
 function sanitize(input: string): string {
-  return input.replace(/[<>]/g, '').trim();
+  return input
+    // eslint-disable-next-line no-control-regex
+    .replace(/[\u0000-\u0008\u000B-\u001F\u007F]/g, '')
+    .replace(/[<>]/g, '')
+    .trim();
+}
+
+/** Collapses whitespace; used for values that end up in a header. */
+function singleLine(input: string): string {
+  return input.replace(/\s+/g, ' ').trim();
+}
+
+/** Origin header values carry no path or trailing slash, so normalise before comparing. */
+function normalizeOrigin(value: string): string {
+  try {
+    return new URL(value).origin;
+  } catch {
+    return value.replace(/\/+$/, '');
+  }
 }
 
 function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
-
-type ErrorCode =
-  | 'FORBIDDEN'
-  | 'RATE_LIMITED'
-  | 'INVALID_BODY'
-  | 'REQUIRED_FIELDS'
-  | 'NAME_TOO_LONG'
-  | 'INVALID_EMAIL'
-  | 'MESSAGE_TOO_LONG'
-  | 'SERVER_CONFIG'
-  | 'SEND_FAILED';
 
 /**
  * Responds with a stable error code rather than a localized string, so the
@@ -40,33 +59,55 @@ function fail(
   return NextResponse.json({ error: code, ...extra }, { status, headers });
 }
 
+/** Keeps the Retry-After header and the JSON payload in agreement. */
+function rateLimited(result: RateLimitResult) {
+  return fail(
+    'RATE_LIMITED',
+    429,
+    { seconds: result.retryAfterSeconds },
+    { 'Retry-After': String(result.retryAfterSeconds) },
+  );
+}
+
 export async function POST(request: NextRequest) {
   // --- Origin check ---
+  // Note: `Origin` is only meaningful for browser traffic; a scripted client
+  // sets it freely. This blocks cross-site form posts, not determined abuse,
+  // which is what the rate limiter is for.
   const origin = request.headers.get('origin');
-  const allowedHosts = [
+  const allowedOrigins = [
     process.env.NEXT_PUBLIC_SITE_URL,
     process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined,
-  ].filter(Boolean) as string[];
+    // Localhost is permitted in development only; leaving it enabled in
+    // production would let any caller bypass the check with a forged header.
+    process.env.NODE_ENV !== 'production' ? 'http://localhost:3000' : undefined,
+  ]
+    .filter((value): value is string => Boolean(value))
+    .map(normalizeOrigin);
 
-  const isLocalhost = origin?.includes('localhost') || origin?.includes('127.0.0.1');
-  const isAllowedOrigin = allowedHosts.some((host) => origin === host);
+  const isAllowedOrigin =
+    typeof origin === 'string' && allowedOrigins.includes(normalizeOrigin(origin));
 
-  if (!isLocalhost && !isAllowedOrigin) {
+  if (!isAllowedOrigin) {
     return fail('FORBIDDEN', 403);
   }
 
   // --- Rate limiting ---
   const forwarded = request.headers.get('x-forwarded-for');
-  const ip = forwarded?.split(',')[0].trim() ?? 'unknown';
-  const { allowed, retryAfterSeconds } = rateLimit(ip);
+  const ip =
+    forwarded?.split(',')[0].trim() ||
+    request.headers.get('x-real-ip')?.trim() ||
+    'unknown';
 
-  if (!allowed) {
-    return fail(
-      'RATE_LIMITED',
-      429,
-      { seconds: retryAfterSeconds },
-      { 'Retry-After': String(retryAfterSeconds) },
-    );
+  const attempt = recordAttempt(ip);
+  if (!attempt.allowed) {
+    return rateLimited(attempt);
+  }
+
+  // Checked without consuming, so a validation error costs the visitor nothing.
+  const sendQuota = checkSendQuota(ip);
+  if (!sendQuota.allowed) {
+    return rateLimited(sendQuota);
   }
 
   // --- Parse body ---
@@ -80,10 +121,11 @@ export async function POST(request: NextRequest) {
   // --- Honeypot ---
   // Bots that fill the hidden field get a fake success so they cannot detect the trap.
   if (body.website) {
+    recordSend(ip);
     return NextResponse.json({ ok: true }, { status: 200 });
   }
 
-  const name = typeof body.name === 'string' ? sanitize(body.name) : '';
+  const name = typeof body.name === 'string' ? singleLine(sanitize(body.name)) : '';
   const email = typeof body.email === 'string' ? sanitize(body.email) : '';
   const message = typeof body.message === 'string' ? sanitize(body.message) : '';
 
@@ -127,6 +169,7 @@ export async function POST(request: NextRequest) {
       ].join('\n'),
     });
 
+    recordSend(ip);
     return NextResponse.json({ ok: true }, { status: 200 });
   } catch (err) {
     console.error('Resend error:', err);

@@ -16,6 +16,6 @@ export const getTheme = (mode: 'light' | 'dark') =>
       },
     },
     typography: {
-      fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+      fontFamily: 'var(--font-noto-sans), sans-serif',
     },
   });

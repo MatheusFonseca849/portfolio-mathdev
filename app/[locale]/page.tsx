@@ -1,7 +1,19 @@
+import type { Metadata } from 'next';
 import { Box, Typography, Container } from '@mui/material';
 import Image from 'next/image';
 import profilePhoto from '@/assets/Matheus-Fonseca.jpeg';
 import { getTranslations } from 'next-intl/server';
+import { buildPageMetadata } from '@/lib/metadata';
+import type { Locale } from '@/i18n/routing';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return buildPageMetadata(locale, 'home');
+}
 
 export default async function HomePage() {
 
@@ -29,7 +41,7 @@ export default async function HomePage() {
           order: { xs: -1, md: 1 },
         }}
       >
-      <Image src={profilePhoto} alt="Profile" priority fill sizes="(max-width: 900px) 180px, 450px" style={{ objectFit: 'cover', objectPosition: 'center top', borderRadius: '50%' }} />
+      <Image src={profilePhoto} alt={t('name')} priority fill sizes="(max-width: 900px) 180px, 450px" style={{ objectFit: 'cover', objectPosition: 'center top', borderRadius: '50%' }} />
       </Box>
 
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>

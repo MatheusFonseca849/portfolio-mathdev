@@ -1,11 +1,20 @@
 'use client';
 
-import { createContext, useContext, useMemo, useState, ReactNode } from 'react';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+  ReactNode,
+} from 'react';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { getTheme } from '@/lib/theme';
 
 type ColorMode = 'light' | 'dark';
+
+const STORAGE_KEY = 'color-mode';
 
 interface ColorModeContextType {
   mode: ColorMode;
@@ -26,10 +35,28 @@ interface ThemeRegistryProps {
 export default function ThemeRegistry({ children }: ThemeRegistryProps) {
   const [mode, setMode] = useState<ColorMode>('dark');
 
+  useEffect(() => {
+    const stored = window.localStorage.getItem(STORAGE_KEY);
+
+    if (stored === 'light' || stored === 'dark') {
+      setMode(stored);
+      return;
+    }
+
+    if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+      setMode('light');
+    }
+  }, []);
+
   const colorModeValue = useMemo(
     () => ({
       mode,
-      toggleColorMode: () => setMode((prev) => (prev === 'light' ? 'dark' : 'light')),
+      toggleColorMode: () =>
+        setMode((prev) => {
+          const next = prev === 'light' ? 'dark' : 'light';
+          window.localStorage.setItem(STORAGE_KEY, next);
+          return next;
+        }),
     }),
     [mode]
   );

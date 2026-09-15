@@ -1,9 +1,10 @@
 'use client';
 
 import { useState, useRef, useEffect, useCallback } from 'react';
+import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import {
   Card,
-  CardMedia,
   CardContent,
   CardActions,
   Typography,
@@ -28,7 +29,12 @@ export interface ProjectCardProps {
 }
 
 const CARD_HEIGHT = 420;
+const CARD_WIDTH = 400;
+const THUMBNAIL_HEIGHT = 180;
 const COLLAPSED_TEXT_HEIGHT = 60;
+
+/** Always reserved, so revealing the expand button can't shift the layout. */
+const EXPAND_ROW_HEIGHT = 34;
 
 export default function ProjectCard({
   title,
@@ -38,8 +44,10 @@ export default function ProjectCard({
   publicUrl,
   info,
 }: ProjectCardProps) {
+  const t = useTranslations('projects');
   const [expanded, setExpanded] = useState(false);
   const [isOverflowing, setIsOverflowing] = useState(false);
+  const [thumbnailFailed, setThumbnailFailed] = useState(false);
   const textRef = useRef<HTMLSpanElement>(null);
 
   const checkOverflow = useCallback(() => {
@@ -57,7 +65,7 @@ export default function ProjectCard({
   return (
     <Card
       sx={{
-        width: 400,
+        width: CARD_WIDTH,
         maxWidth: '100%',
         height: expanded ? 'auto' : CARD_HEIGHT,
         minHeight: CARD_HEIGHT,
@@ -67,18 +75,21 @@ export default function ProjectCard({
         transition: 'height 0.3s ease',
       }}
     >
-      {thumbnail ? (
-        <CardMedia
-          component="img"
-          height="180"
-          image={thumbnail}
-          alt={title}
-          sx={{ objectFit: 'cover', flexShrink: 0 }}
-        />
+      {thumbnail && !thumbnailFailed ? (
+        <Box sx={{ position: 'relative', height: THUMBNAIL_HEIGHT, flexShrink: 0 }}>
+          <Image
+            src={thumbnail}
+            alt={title}
+            fill
+            sizes={`${CARD_WIDTH}px`}
+            style={{ objectFit: 'cover' }}
+            onError={() => setThumbnailFailed(true)}
+          />
+        </Box>
       ) : (
         <Box
           sx={{
-            height: 180,
+            height: THUMBNAIL_HEIGHT,
             flexShrink: 0,
             bgcolor: 'grey.300',
             display: 'flex',
@@ -90,7 +101,7 @@ export default function ProjectCard({
         </Box>
       )}
       <CardContent sx={{ flexGrow: 1, overflow: 'hidden', pb: 0 }}>
-        <Typography variant="h6" component="h3" gutterBottom>
+        <Typography variant="h6" component="h2" gutterBottom>
           {title}
         </Typography>
         <Typography variant="caption" color="text.secondary" sx={{ display: 'block' }} gutterBottom>
@@ -117,12 +128,21 @@ export default function ProjectCard({
             />
           )}
         </Box>
-        {isOverflowing && (
-          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 0.5 }}>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            mt: 0.5,
+            height: EXPAND_ROW_HEIGHT,
+          }}
+        >
+          {isOverflowing && (
             <IconButton
               size="small"
               onClick={() => setExpanded((prev) => !prev)}
-              aria-label={expanded ? 'Show less' : 'Show more'}
+              aria-label={expanded ? t('showLess') : t('showMore')}
+              aria-expanded={expanded}
               sx={{
                 transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)',
                 transition: 'transform 0.3s ease',
@@ -130,8 +150,8 @@ export default function ProjectCard({
             >
               <ExpandMoreIcon fontSize="small" />
             </IconButton>
-          </Box>
-        )}
+          )}
+        </Box>
       </CardContent>
       <CardActions sx={{ px: 2, pb: 2, mt: 'auto' }}>
         {url && (
@@ -142,7 +162,7 @@ export default function ProjectCard({
             rel="noopener noreferrer"
             startIcon={<GitHubIcon />}
           >
-            Repo
+            {t('viewRepo')}
           </Button>
         )}
         {publicUrl && (
@@ -153,7 +173,7 @@ export default function ProjectCard({
             rel="noopener noreferrer"
             startIcon={<LaunchIcon />}
           >
-            Live
+            {t('viewLive')}
           </Button>
         )}
       </CardActions>

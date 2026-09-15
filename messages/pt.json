@@ -1,7 +1,23 @@
 {
   "metadata": {
-    "title": "Portfólio - MathDev",
-    "description": "Portfólio pessoal"
+    "defaultTitle": "Matheus Fonseca — Desenvolvedor Full Stack",
+    "tagline": "Desenvolvedor Full Stack",
+    "home": {
+      "title": "Sobre Mim",
+      "description": "Desenvolvedor full stack especializado em React, Next.js, Node.js e Python. Graduado em Análise e Desenvolvimento de Sistemas, com experiência em integração de sistemas e soluções web centradas no usuário."
+    },
+    "projects": {
+      "title": "Projetos",
+      "description": "Uma seleção de projetos de desenvolvimento web de Matheus Fonseca, carregados diretamente do GitHub."
+    },
+    "resume": {
+      "title": "Currículo",
+      "description": "Experiência profissional, habilidades técnicas e formação de Matheus Fonseca, desenvolvedor full stack."
+    },
+    "contact": {
+      "title": "Contato",
+      "description": "Entre em contato com Matheus Fonseca sobre trabalho, colaborações ou oportunidades."
+    }
   },
   "nav": {
     "fallback": "Portfólio",
@@ -11,25 +27,24 @@
     "contact": "Contato"
   },
   "header": {
+    "skipToContent": "Ir para o conteúdo",
     "switchLanguage": "Alterar idioma",
     "toggleDarkMode": "Alternar modo escuro",
     "openMenu": "Abrir menu de navegação"
   },
   "home": {
     "name": "Matheus Fonseca",
-    "bio1": "Formado em 2026 em Análise e Desenvolvimento de Sistemas, Matheus demonstrou grande aptidão no mundo da tecnologia ao longo de sua graduação. Foi selecionado para ser monitor de duas disciplinas diferentes em seu primeiro semestre, conseguiu estagiar em uma empresa de desenvolvimento de sistemas em seu segundo, foi efetivamente contratado no terceiro e, por fim, garantiu um emprego internacional como analista de suporte ao cliente no quarto, demonstrando sua capacidade de se adaptar e prosperar em ambientes desafiadores.",
-    "bio2": "Através de suas experiências, Matheus desenvolveu uma forte base em desenvolvimento de software, resolução de problemas e comunicação com clientes, qualidades que espera aproveitar e desenvolver em sua carreira como desenvolvedor de software. Inimigo declarado de bugs, sistemas de baixo desempenho e arquiteturas mal projetadas, Matheus está pronto para continuar estudando e trabalhando incansavelmente para entregar código de alta qualidade e contribuir para um mundo livre de bugs.",
+    "bio1": "Formado em 2026 em Análise e Desenvolvimento de Sistemas, Matheus demonstrou grande aptidão no mundo da tecnologia ao longo de sua graduação. Foi selecionado para ser monitor de duas disciplinas diferentes em seu primeiro semestre, estagiou em uma empresa de desenvolvimento de sistemas em seu segundo e efetivou-se nela no terceiro semestre. Ainda no quarto semestre da sua graduação, garantiu um emprego internacional como analista de suporte ao cliente, demonstrando sua capacidade de adaptação e progressão em ambientes desafiadores.",
+    "bio2": "Por meio de suas experiências, Matheus aprimorou uma forte base em desenvolvimento de software, resolução de problemas e comunicação com clientes, qualidades que espera aproveitar e aperfeiçoar na sua carreira como desenvolvedor de software. Inimigo declarado de bugs, sistemas de baixo desempenho e arquiteturas mal projetadas, Matheus está pronto para continuar estudando e trabalhando incansavelmente para entregar código de alta qualidade e contribuir para um mundo livre de bugs.",
     "bio3": "Mas, nem tudo é sobre zeros e uns. Matheus também é um grande fã de rock e heavy metal, adora video games, cultura pop, música e cinema brasileiros, e tem uma paixão profunda por aprender coisas novas e explorar ideias diferentes."
   },
 
-  "resume": {
-    "jobTitle": "Desenvolvedor Full Stack",
-    "intro": "Graduado em Análise e Desenvolvimento de Sistemas, com experiência prática em desenvolvimento full-stack, especializado em React, Next.js, Node.js e Python. Possuo conhecimentos em integração de sistemas, liderança de equipes e desenvolvimento de soluções web centradas no usuário. Utilizo minha sólida experiência na área de vendas para trazer uma perspectiva diferenciada na resolução de problemas e na colaboração com diferentes partes interessadas. Busco contribuir para projetos inovadores de tecnologia, gerando resultados por meio de uma postura proativa e do compromisso com a excelência."
-    
-  },
-
   "projects": {
-    "fetchError": "Falha ao carregar os projetos"
+    "fetchError": "Falha ao carregar os projetos",
+    "viewRepo": "Repositório",
+    "viewLive": "Ver Online",
+    "showMore": "Ver mais",
+    "showLess": "Ver menos"
   },
   "contact": {
     "heading": "Entre em Contato",
