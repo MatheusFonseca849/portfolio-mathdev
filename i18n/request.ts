@@ -5,18 +5,17 @@ import { hasLocale } from 'next-intl';
 import { routing } from './routing';
 
 export default getRequestConfig(async ({ locale }) => {
-  if (!locale) {
-    const paramValue = await rootParams.locale();
+  const candidate = locale ?? (await rootParams.locale());
 
-    if (hasLocale(routing.locales, paramValue)) {
-      locale = paramValue;
-    } else {
-      notFound();
-    }
+  // Validated unconditionally, not just on the fallback path: this value feeds
+  // the dynamic import below, and an unrecognised locale should 404 rather than
+  // surface as a module resolution error.
+  if (!hasLocale(routing.locales, candidate)) {
+    notFound();
   }
 
   return {
-    locale,
-    messages: (await import(`../messages/${locale}.json`)).default,
+    locale: candidate,
+    messages: (await import(`../messages/${candidate}.json`)).default,
   };
 });

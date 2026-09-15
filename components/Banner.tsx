@@ -12,6 +12,11 @@ const gradients = {
   dark: 'linear-gradient(to right top, #005800, #00582e, #005749, #00535a, #004e5e)',
 };
 
+const titleColors = {
+  light: '#0B3D1F',
+  dark: '#FFFFFF',
+};
+
 export default function Banner({ title }: BannerProps) {
   const { mode } = useColorMode();
 
@@ -32,7 +37,7 @@ export default function Banner({ title }: BannerProps) {
         sx={{
           fontWeight: 700,
           textAlign: 'center',
-          color: '#FFFFFF',
+          color: titleColors[mode],
           fontSize: { xs: '1.75rem', md: '3.75rem' },
         }}
       >
