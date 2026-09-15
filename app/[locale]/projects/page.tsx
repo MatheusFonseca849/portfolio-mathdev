@@ -1,16 +1,39 @@
 import { Box, Container, Typography } from '@mui/material';
-import { getTranslations } from 'next-intl/server';
-import { getRepos } from 'portfolio-github-integration';
+import { getLocale, getTranslations } from 'next-intl/server';
+import { getRepos, type RepoMetadata } from 'portfolio-github-integration';
+import type { Metadata } from 'next';
 import ProjectCard from '@/components/ProjectCard';
+import { routing, type Locale } from '@/i18n/routing';
+import { buildPageMetadata } from '@/lib/metadata';
 
 const GITHUB_USERNAME = 'MatheusFonseca849';
 
 export const revalidate = 3600; // Re-fetch from GitHub every 1 hour
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return buildPageMetadata(locale, 'projects');
+}
+
+function localizedInfo(repo: RepoMetadata, locale: string): string {
+  if (locale === routing.defaultLocale) return repo.info;
+
+  const translated = repo.customConfig?.[`info${locale.toUpperCase()}`];
+
+  return typeof translated === 'string' && translated.trim() !== ''
+    ? translated
+    : repo.info;
+}
+
 export default async function ProjectsPage() {
   const t = await getTranslations('projects');
+  const locale = await getLocale();
 
-  let repos: { name: string; url: string; publicUrl?: string; thumbnail?: string | null; info: string; title: string; customConfig?: Record<string, unknown> }[] = [];
+  let repos: RepoMetadata[] = [];
   let failed = false;
 
   try {
@@ -54,7 +77,7 @@ export default async function ProjectsPage() {
             name={repo.name}
             url={repo.url}
             publicUrl={repo.publicUrl ?? ''}
-            info={repo.info}
+            info={localizedInfo(repo, locale)}
             customConfig={repo.customConfig}
           />
         ))}

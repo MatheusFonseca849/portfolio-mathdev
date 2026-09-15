@@ -1,7 +1,23 @@
 {
   "metadata": {
-    "title": "Portfolio - MathDev",
-    "description": "Personal portfolio"
+    "defaultTitle": "Matheus Fonseca — Full Stack Developer",
+    "tagline": "Full Stack Developer",
+    "home": {
+      "title": "About Me",
+      "description": "Full stack developer specialising in React, Next.js, Node.js and Python. Systems Analysis and Development graduate with experience in systems integration and user-centric web solutions."
+    },
+    "projects": {
+      "title": "Projects",
+      "description": "A selection of web development projects by Matheus Fonseca, pulled live from GitHub."
+    },
+    "resume": {
+      "title": "Resume",
+      "description": "Professional experience, technical skills and education of Matheus Fonseca, full stack software developer."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Get in touch with Matheus Fonseca about work, collaboration or opportunities."
+    }
   },
   "nav": {
     "fallback": "Portfolio",
@@ -11,6 +27,7 @@
     "contact": "Contact Me"
   },
   "header": {
+    "skipToContent": "Skip to content",
     "switchLanguage": "Switch language",
     "toggleDarkMode": "Toggle dark mode",
     "openMenu": "Open navigation menu"
@@ -22,12 +39,11 @@
     "bio3": "However, not everything is about ones and zeros. Matheus is also an avid rock and heavy metal fan, loves video games, pop culture, Brazilian music and cinema, and has a deep passion for learning new things and exploring different ideas."
   },
   "projects": {
-    "fetchError": "Failed to fetch projects"
-  },
-  "resume": {
-    "jobTitle": "Full Stack Software Developer",
-    "intro": "Systems Analysis and Development graduate with hands-on experience in full-stack development, specializing in React, Next.js, Node.js, and Python. Skilled in systems integration, team leadership, and the delivery of user-centric web solutions. Leveraging a strong foundation in sales to bring a unique perspective to problem-solving and stakeholder collaboration. Eager to contribute to innovative technology projects, driving results with a proactive mindset and commitment to excellence."
-    
+    "fetchError": "Failed to fetch projects",
+    "viewRepo": "Repo",
+    "viewLive": "Live",
+    "showMore": "Show more",
+    "showLess": "Show less"
   },
   "contact": {
     "heading": "Get in Touch",

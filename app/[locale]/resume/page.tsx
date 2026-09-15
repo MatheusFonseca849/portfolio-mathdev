@@ -8,16 +8,28 @@ import {
   Typography,
 } from '@mui/material';
 
+import type { Metadata } from 'next';
 import { getLocale } from 'next-intl/server';
 
 import { getResumeContent } from './content';
 import type { Experience } from './content/types';
+import { buildPageMetadata } from '@/lib/metadata';
+import type { Locale } from '@/i18n/routing';
 
 import WorkOutlineIcon from '@mui/icons-material/WorkOutlined';
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import CodeOutlinedIcon from '@mui/icons-material/CodeOutlined';
 import TranslateOutlinedIcon from '@mui/icons-material/TranslateOutlined';
 import PsychologyOutlinedIcon from '@mui/icons-material/PsychologyOutlined';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return buildPageMetadata(locale, 'resume');
+}
 
 function SectionTitle({
   icon,
@@ -39,7 +51,12 @@ function SectionTitle({
         {icon}
       </Box>
 
-      <Typography variant="h5" color="text.primary" sx={{ fontWeight: 700 }}>
+      <Typography
+        variant="h5"
+        component="h2"
+        color="text.primary"
+        sx={{ fontWeight: 700 }}
+      >
         {children}
       </Typography>
     </Stack>
@@ -96,6 +113,7 @@ function ExperienceItem({
 
       <Typography
         variant="h6"
+        component="h3"
         color="text.primary"
         sx={{ fontWeight: 700, lineHeight: 1.3 }}
       >

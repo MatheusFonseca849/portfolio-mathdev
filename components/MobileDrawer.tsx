@@ -12,20 +12,14 @@ import {
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useTranslations } from 'next-intl';
-import { usePathname, useRouter } from '@/i18n/navigation';
-import { navItems, type NavItem } from '@/config/navigation';
+import { Link, usePathname } from '@/i18n/navigation';
+import { navItems } from '@/config/navigation';
 
 export default function MobileDrawer() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const router = useRouter();
   const t = useTranslations('nav');
   const tHeader = useTranslations('header');
-
-  const handleNav = (path: NavItem['path']) => {
-    router.push(path);
-    setOpen(false);
-  };
 
   return (
     <>
@@ -43,13 +37,15 @@ export default function MobileDrawer() {
         open={open}
         onClose={() => setOpen(false)}
       >
-        <Box sx={{ width: 250 }} role="navigation">
+        <Box component="nav" sx={{ width: 250 }} aria-label={t('fallback')}>
           <List>
             {navItems.map((item) => (
               <ListItem key={item.path} disablePadding>
                 <ListItemButton
+                  component={Link}
+                  href={item.path}
                   selected={pathname === item.path}
-                  onClick={() => handleNav(item.path)}
+                  onClick={() => setOpen(false)}
                 >
                   <ListItemText primary={t(item.key)} />
                 </ListItemButton>
