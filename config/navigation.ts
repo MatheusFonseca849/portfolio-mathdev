@@ -10,3 +10,7 @@ export const navItems: NavItem[] = [
   { key: 'resume', path: '/resume' },
   { key: 'contact', path: '/contact' },
 ];
+
+export const hiddenRouteTitles: Record<string, 'fortyTwo'> = {
+  '/42': 'fortyTwo',
+};

@@ -17,6 +17,10 @@
     "contact": {
       "title": "Contact",
       "description": "Get in touch with Matheus Fonseca about work, collaboration or opportunities."
+    },
+    "fortyTwo": {
+      "title": "42",
+      "description": "Don't panic!"
     }
   },
   "nav": {
@@ -24,7 +28,8 @@
     "about": "About Me",
     "projects": "Projects",
     "resume": "My Resume",
-    "contact": "Contact Me"
+    "contact": "Contact Me",
+    "fortyTwo": "42"
   },
   "header": {
     "skipToContent": "Skip to content",
@@ -36,7 +41,8 @@
     "name": "Matheus Fonseca",
     "bio1": "Graduated in 2026 in Systems Analysis and Development, Matheus has displayed great aptitude in the world of technology throughout his graduation journey. He was selected to be a monitor for two different disciplines on his first semester, was able to secure an internship at a systems development company in his second, was effectively hired on the third semester, and, at last, secured an international job as a client support analyst in the fourth, demonstrating his ability to adapt and thrive in challenging environments.",
     "bio2": "Through his experiences, Matheus has developed a strong foundation in software development, problem-solving, and client communication, which he hopes to leverage in his career as a software developer. Being a declared enemy of bugs, low performance systems, and poorly designed architectures, Matheus is ready to keep on studying and working relentlessly to deliver high quality code output and contribute to a bug-free world.",
-    "bio3": "However, not everything is about ones and zeros. Matheus is also an avid rock and heavy metal fan, loves video games, pop culture, Brazilian music and cinema, and has a deep passion for learning new things and exploring different ideas."
+    "bio3": "However, not everything is about ones and zeros. Matheus is also an avid rock and heavy metal fan, loves video games, pop culture, Brazilian music and cinema, and has a deep passion for learning new things and exploring different ideas.",
+    "bio4": "In fact, there's a little easter egg hidden somewhere in this website. If you know the answer to the ultimate question of life, the universe, and everything, you might just find it! Hint: type the answer on your keyboard."
   },
   "projects": {
     "fetchError": "Failed to fetch projects",
@@ -70,5 +76,16 @@
       "NETWORK": "Network error. Please check your connection and try again.",
       "UNKNOWN": "Something went wrong. Please try again."
     }
+  },
+  "easterEgg": {
+    "farewell": "So long, and thanks for all the fish!",
+    "buttonLabel": "The answer to life, the universe, and everything"
+  },
+  "fortyTwo": {
+    "header": "42",
+    "subheader": "The answer to the ultimate question of life, the universe, and everything.",
+    "description1": "In Douglas Adams' beloved science-fiction series The Hitchhiker's Guide to the Galaxy, 42 is the answer to the Ultimate Question of Life, the Universe, and Everything. After 7.5 million years of calculation, the supercomputer Deep Thought reveals this seemingly underwhelming answer, only for everyone to realize that nobody actually knows what the question is.",
+    "description2": "Interestingly, there's a curious connection between 42 and the world of programming. ASCII (American Standard Code for Information Interchange) is a character-encoding standard that assigns numerical values to characters so computers can represent and process text. In ASCII, the decimal value 42 corresponds to the asterisk (*), a symbol that serves many purposes in programming. In certain contexts, it acts as a wildcard, representing a range of possible characters or values. This connection suggests that the meaning of the universe is not fixed, but rather determined by those who experience it.",
+    "description3": "There's no evidence that Adams intended this connection, but it's a fun coincidence with a fitting philosophical twist. If the answer to everything is an asterisk, perhaps the meaning of life isn't a fixed, universal truth waiting to be discovered, but something open to interpretation. Maybe the universe doesn't come with a predefined purpose; maybe we're the ones who give it meaning."
   }
 }

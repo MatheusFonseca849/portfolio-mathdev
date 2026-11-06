@@ -5,6 +5,7 @@ import profilePhoto from '@/assets/Matheus-Fonseca.jpeg';
 import { getTranslations } from 'next-intl/server';
 import { buildPageMetadata } from '@/lib/metadata';
 import type { Locale } from '@/i18n/routing';
+import FortyTwoEasterEgg from '@/components/FortyTwoEasterEgg';
 
 export async function generateMetadata({
   params,
@@ -20,6 +21,7 @@ export default async function HomePage() {
   const t = await getTranslations('home');
 
   return (
+    <>
     <Container
       maxWidth="lg"
       sx={{
@@ -59,7 +61,13 @@ export default async function HomePage() {
         <Typography variant="body1" color="text.primary">
           {t('bio3')}
         </Typography>
+        
+        <Typography variant="body1" color="text.primary">
+          {t('bio4')}
+        </Typography>
       </Box>
     </Container>
+    <FortyTwoEasterEgg />
+    </>
   );
 }
