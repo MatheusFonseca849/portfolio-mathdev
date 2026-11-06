@@ -17,6 +17,10 @@
     "contact": {
       "title": "Contato",
       "description": "Entre em contato com Matheus Fonseca sobre trabalho, colaborações ou oportunidades."
+    },
+    "fortyTwo": {
+      "title": "42",
+      "description": "Don't panic!"
     }
   },
   "nav": {
@@ -24,7 +28,8 @@
     "about": "Sobre Mim",
     "projects": "Projetos",
     "resume": "Meu Currículo",
-    "contact": "Contato"
+    "contact": "Contato",
+    "fortyTwo": "42"
   },
   "header": {
     "skipToContent": "Ir para o conteúdo",
@@ -36,7 +41,8 @@
     "name": "Matheus Fonseca",
     "bio1": "Formado em 2026 em Análise e Desenvolvimento de Sistemas, Matheus demonstrou grande aptidão no mundo da tecnologia ao longo de sua graduação. Foi selecionado para ser monitor de duas disciplinas diferentes em seu primeiro semestre, estagiou em uma empresa de desenvolvimento de sistemas em seu segundo e efetivou-se nela no terceiro semestre. Ainda no quarto semestre da sua graduação, garantiu um emprego internacional como analista de suporte ao cliente, demonstrando sua capacidade de adaptação e progressão em ambientes desafiadores.",
     "bio2": "Por meio de suas experiências, Matheus aprimorou uma forte base em desenvolvimento de software, resolução de problemas e comunicação com clientes, qualidades que espera aproveitar e aperfeiçoar na sua carreira como desenvolvedor de software. Inimigo declarado de bugs, sistemas de baixo desempenho e arquiteturas mal projetadas, Matheus está pronto para continuar estudando e trabalhando incansavelmente para entregar código de alta qualidade e contribuir para um mundo livre de bugs.",
-    "bio3": "Mas, nem tudo é sobre zeros e uns. Matheus também é um grande fã de rock e heavy metal, adora video games, cultura pop, música e cinema brasileiros, e tem uma paixão profunda por aprender coisas novas e explorar ideias diferentes."
+    "bio3": "Mas, nem tudo é sobre zeros e uns. Matheus também é um grande fã de rock e heavy metal, adora video games, cultura pop, música e cinema brasileiros, e tem uma paixão profunda por aprender coisas novas e explorar ideias diferentes.",
+    "bio4": "Na verdade, há um pequeno easter egg escondido em algum lugar deste website. Se você souber a resposta para a pergunta fundamental sobre a vida, o universo e tudo mais, talvez consiga encontrá-lo! Dica: digite a resposta no teclado."
   },
 
   "projects": {
@@ -71,5 +77,16 @@
       "NETWORK": "Erro de rede. Verifique sua conexão e tente novamente.",
       "UNKNOWN": "Algo deu errado. Tente novamente."
     }
+  },
+  "easterEgg": {
+    "farewell": "Até logo, e obrigado pelos peixes!",
+    "buttonLabel": "A resposta para a vida, o universo e tudo mais"
+  },
+  "fortyTwo": {
+    "header": "42",
+    "subheader": "A grande resposta para a vida, o universo e tudo o mais",
+    "description1": "Na famosa série de ficção científica O Guia do Mochileiro das Galáxias, de Douglas Adams, 42 é a resposta para a Questão Fundamental sobre a Vida, o Universo e Tudo Mais. Após 7,5 milhões de anos calculando, o supercomputador Deep Thought revela essa resposta anticlimática, fazendo todos perceberem que ninguém sabia qual era a pergunta certa.",
+    "description2": "Curiosamente, existe uma conexão interessante entre o número 42 e o mundo da programação. ASCII (American Standard Code for Information Interchange) é um padrão de codificação de caracteres que atribui valores numéricos a letras, números e símbolos, permitindo que computadores representem e processem textos. Na tabela ASCII, o valor decimal 42 corresponde ao asterisco (*), um símbolo com diversas aplicações na programação. Em determinados contextos, ele funciona como um coringa (wildcard), representando uma variedade de caracteres ou valores possíveis. Essa conexão sugere que o sentido do universo não é fixo, mas determinado por aqueles que o experimentam.",
+    "description3": "Não há evidências de que Adams tenha planejado essa conexão, mas é uma coincidência divertida, com um toque filosófico interessante. Se a resposta para tudo é um asterisco, talvez o universo não tenha um propósito predefinido; talvez sejamos nós que atribuímos significado a ele."
   }
 }

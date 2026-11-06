@@ -6,7 +6,7 @@ import { usePathname } from '@/i18n/navigation';
 import TopHeader from '@/components/TopHeader';
 import Banner from '@/components/Banner';
 import HeaderNavigation from '@/components/HeaderNavigation';
-import { navItems } from '@/config/navigation';
+import { navItems, hiddenRouteTitles } from '@/config/navigation';
 
 const MAIN_ID = 'main-content';
 
@@ -16,7 +16,12 @@ export default function PageShell({ children }: { children: React.ReactNode }) {
   const tHeader = useTranslations('header');
 
   const activeItem = navItems.find((item) => item.path === pathname);
-  const title = activeItem ? t(activeItem.key) : t('fallback');
+  const hiddenKey = hiddenRouteTitles[pathname];
+  const title = activeItem 
+    ? t(activeItem.key)
+    : hiddenKey
+      ? t(hiddenKey)
+      : t('fallback');
 
   return (
     <Box sx={{ minHeight: '100vh', bgcolor: 'background.default' }}>
