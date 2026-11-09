@@ -21,6 +21,10 @@
     "fortyTwo": {
       "title": "42",
       "description": "Don't panic!"
+    },
+    "notFound": {
+      "title": "Página Não Encontrada",
+      "description": "A página que você está procurando não existe."
     }
   },
   "nav": {
@@ -29,7 +33,8 @@
     "projects": "Projetos",
     "resume": "Meu Currículo",
     "contact": "Contato",
-    "fortyTwo": "42"
+    "fortyTwo": "42",
+    "notFound": "Página Não Encontrada"
   },
   "header": {
     "skipToContent": "Ir para o conteúdo",
@@ -88,5 +93,13 @@
     "description1": "Na famosa série de ficção científica O Guia do Mochileiro das Galáxias, de Douglas Adams, 42 é a resposta para a Questão Fundamental sobre a Vida, o Universo e Tudo Mais. Após 7,5 milhões de anos calculando, o supercomputador Deep Thought revela essa resposta anticlimática, fazendo todos perceberem que ninguém sabia qual era a pergunta certa.",
     "description2": "Curiosamente, existe uma conexão interessante entre o número 42 e o mundo da programação. ASCII (American Standard Code for Information Interchange) é um padrão de codificação de caracteres que atribui valores numéricos a letras, números e símbolos, permitindo que computadores representem e processem textos. Na tabela ASCII, o valor decimal 42 corresponde ao asterisco (*), um símbolo com diversas aplicações na programação. Em determinados contextos, ele funciona como um coringa (wildcard), representando uma variedade de caracteres ou valores possíveis. Essa conexão sugere que o sentido do universo não é fixo, mas determinado por aqueles que o experimentam.",
     "description3": "Não há evidências de que Adams tenha planejado essa conexão, mas é uma coincidência divertida, com um toque filosófico interessante. Se a resposta para tudo é um asterisco, talvez o universo não tenha um propósito predefinido; talvez sejamos nós que atribuímos significado a ele."
+  },
+  "notFound": {
+    "header": "Página Não Encontrada",
+    "subheader": "Esta não é a página que você está procurando.",
+    "description1": "Desculpe, a página que você está procurando não existe.",
+    "description2": "Você pode ter digitado o endereço errado ou a página pode ter sido movida.",
+    "description3": "Se acha que isso é um erro, ou tem uma sugestão para uma nova página, por favor",
+    "linkText": "entre em contato comigo."
   }
 }

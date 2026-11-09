@@ -98,7 +98,7 @@ export default function FortyTwoEasterEgg() {
             fontSize: '0.7rem',
             fontFamily: 'monospace',
             color: 'text.disabled',
-            opacity: 0.35,
+            opacity: 0.25,
             transition: 'opacity 200ms',
             '&:hover, &:focus-visible': { opacity: 1 },
           }}
