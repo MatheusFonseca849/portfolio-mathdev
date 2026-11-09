@@ -13,14 +13,15 @@ export const siteUrl = (
   process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'
 ).replace(/\/+$/, '');
 
-export type PageKey = 'home' | 'projects' | 'resume' | 'contact' | 'fortyTwo';
+export type PageKey = 'home' | 'projects' | 'resume' | 'contact' | 'fortyTwo' | 'notFound';
 
 export const pagePaths: Record<PageKey, string> = {
   home: '/',
   projects: '/projects',
   resume: '/resume',
   contact: '/contact',
-  fortyTwo: '/42'
+  fortyTwo: '/42',
+  notFound: '/not-found',
 };
 
 /** OpenGraph expects a full locale tag */

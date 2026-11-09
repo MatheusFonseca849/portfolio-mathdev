@@ -12,5 +12,7 @@ export const navItems: NavItem[] = [
 ];
 
 export const hiddenRouteTitles: Record<string, 'fortyTwo'> = {
-  '/42': 'fortyTwo',
+  '/42': 'fortyTwo',  
 };
+
+export type BannerTitleKey = NavItem['key'] | 'fortyTwo' | 'notFound';

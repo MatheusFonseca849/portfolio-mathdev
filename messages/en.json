@@ -21,6 +21,10 @@
     "fortyTwo": {
       "title": "42",
       "description": "Don't panic!"
+    },
+    "notFound": {
+      "title": "Page Not Found",
+      "description": "The page you are looking for does not exist."
     }
   },
   "nav": {
@@ -29,7 +33,8 @@
     "projects": "Projects",
     "resume": "My Resume",
     "contact": "Contact Me",
-    "fortyTwo": "42"
+    "fortyTwo": "42",
+    "notFound": "Page Not Found"
   },
   "header": {
     "skipToContent": "Skip to content",
@@ -87,5 +92,13 @@
     "description1": "In Douglas Adams' beloved science-fiction series The Hitchhiker's Guide to the Galaxy, 42 is the answer to the Ultimate Question of Life, the Universe, and Everything. After 7.5 million years of calculation, the supercomputer Deep Thought reveals this seemingly underwhelming answer, only for everyone to realize that nobody actually knows what the question is.",
     "description2": "Interestingly, there's a curious connection between 42 and the world of programming. ASCII (American Standard Code for Information Interchange) is a character-encoding standard that assigns numerical values to characters so computers can represent and process text. In ASCII, the decimal value 42 corresponds to the asterisk (*), a symbol that serves many purposes in programming. In certain contexts, it acts as a wildcard, representing a range of possible characters or values. This connection suggests that the meaning of the universe is not fixed, but rather determined by those who experience it.",
     "description3": "There's no evidence that Adams intended this connection, but it's a fun coincidence with a fitting philosophical twist. If the answer to everything is an asterisk, perhaps the meaning of life isn't a fixed, universal truth waiting to be discovered, but something open to interpretation. Maybe the universe doesn't come with a predefined purpose; maybe we're the ones who give it meaning."
+  },
+  "notFound": {
+    "header": "Page Not Found",
+    "subheader": "This is not the page you are looking for.",
+    "description1": "Sorry, the page you are looking for does not exist.",
+    "description2": "You may have mistyped the address or the page may have been moved.",
+    "description3": "If you think this is an error, or have a suggestion for a new page, please",
+    "linkText": "contact me."
   }
 }

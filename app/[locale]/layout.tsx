@@ -7,6 +7,7 @@ import ThemeRegistry from "@/providers/ThemeRegistry";
 import PageShell from "@/components/PageShell";
 import { routing } from "@/i18n/routing";
 import { SITE_NAME, siteUrl } from "@/lib/metadata";
+import { BannerTitleProvider } from '@/providers/BannerTitleProvider';
 import "../globals.css";
 
 /**
@@ -58,9 +59,11 @@ export default async function LocaleLayout({
       <body suppressHydrationWarning>
         <NextIntlClientProvider>
           <ThemeRegistry>
-            <PageShell>
-              {children}
-            </PageShell>
+            <BannerTitleProvider>
+              <PageShell>
+                {children}
+              </PageShell>
+            </BannerTitleProvider>
           </ThemeRegistry>
         </NextIntlClientProvider>
       </body>
