@@ -7,6 +7,7 @@ import TopHeader from '@/components/TopHeader';
 import Banner from '@/components/Banner';
 import HeaderNavigation from '@/components/HeaderNavigation';
 import { navItems, hiddenRouteTitles } from '@/config/navigation';
+import { useBannerTitle } from '@/providers/BannerTitleProvider';
 
 const MAIN_ID = 'main-content';
 
@@ -15,13 +16,12 @@ export default function PageShell({ children }: { children: React.ReactNode }) {
   const t = useTranslations('nav');
   const tHeader = useTranslations('header');
 
-  const activeItem = navItems.find((item) => item.path === pathname);
-  const hiddenKey = hiddenRouteTitles[pathname];
-  const title = activeItem 
-    ? t(activeItem.key)
-    : hiddenKey
-      ? t(hiddenKey)
-      : t('fallback');
+  const { override } = useBannerTitle();
+ 
+const activeItem = navItems.find((item) => item.path === pathname);
+const hiddenKey = hiddenRouteTitles[pathname];
+const titleKey = override ?? activeItem?.key ?? hiddenKey ?? 'fallback';
+const title = t(titleKey);
 
   return (
     <Box sx={{ minHeight: '100vh', bgcolor: 'background.default' }}>

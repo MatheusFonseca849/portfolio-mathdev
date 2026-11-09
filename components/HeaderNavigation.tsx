@@ -10,7 +10,7 @@ export default function HeaderNavigation() {
   const t = useTranslations('nav');
 
   const currentTab = navItems.findIndex((item) => item.path === pathname);
-  const value = currentTab === -1 ? 0 : currentTab;
+  const value = currentTab === -1 ? false : currentTab;
 
   return (
     <Box
